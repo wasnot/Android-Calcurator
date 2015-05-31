@@ -10,24 +10,27 @@
                 tools:context=".MainActivity">
 
     <TextView
-            android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
+            android:id="@+id/currentValueText"/>
 
     <TextView
-            android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
-            android:id="@+id/textView2"/>
+            android:layout_below="@id/currentValueText"
+            android:id="@+id/newValueText"/>
 
     <TextView
-            android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView2"
+            android:layout_below="@id/newValueText"
             android:id="@+id/textViewResult"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewResult"
+                android:id="@+id/actionText"/>
 
     <android.support.v7.widget.GridLayout
             android:layout_height="250dp"

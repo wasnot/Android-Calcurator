@@ -1,12 +1,15 @@
 
 package net.wasnot.android.calculator;
 
+import net.wasnot.android.calculator.util.LogUtil;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -17,8 +20,18 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(R.id.textView)
-    public TextView textView;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    @InjectView(R.id.currentValueText)
+    public TextView currentValueText;
+    @InjectView(R.id.newValueText)
+    public TextView newValueText;
+    @InjectView(R.id.actionText)
+    public TextView actionText;
+
+    private StringBuilder mCurrValue = new StringBuilder();
+    private StringBuilder mNewValue = new StringBuilder();
+    private int mAction = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,51 +71,111 @@ public class MainActivity extends AppCompatActivity {
             R.id.buttonDivide, R.id.buttonEqual
     })
     public void onClick(View v) {
+        TextView t = (TextView) v;
         switch (v.getId()) {
             case R.id.button0:
-                textView.append("0");
-                break;
             case R.id.button1:
-                textView.append("1");
-                break;
             case R.id.button2:
-                textView.append("2");
-                break;
             case R.id.button3:
-                textView.append("3");
-                break;
             case R.id.button4:
-                textView.append("4");
-                break;
             case R.id.button5:
-                textView.append("5");
-                break;
             case R.id.button6:
-                textView.append("6");
-                break;
             case R.id.button7:
-                textView.append("7");
-                break;
             case R.id.button8:
-                textView.append("8");
-                break;
             case R.id.button9:
-                textView.append("9");
+                mNewValue.append(t.getText());
                 break;
             case R.id.buttonPoint:
                 break;
             case R.id.buttonPlusMinus:
                 break;
             case R.id.buttonAdd:
-                break;
             case R.id.buttonSubtract:
-                break;
             case R.id.buttonMultiply:
-                break;
             case R.id.buttonDivide:
+                // 新規値のみの時は既存値に移動させ, アクションを変更
+                if (mCurrValue.length() == 0 && mNewValue.length() > 0) {
+                    mCurrValue.append(mNewValue);
+                    mNewValue.setLength(0);
+                    mAction = v.getId();
+                }
+                // 既存値のみのときはアクション変更
+                else if (mCurrValue.length() > 0 && mNewValue.length() == 0) {
+                    mAction = v.getId();
+                }
+                // どちらもある時は計算結果を既存値へ、新規値はクリア、アクションを変更
+                else if (mCurrValue.length() > 0 && mNewValue.length() > 0) {
+                    calculate();
+                    mAction = v.getId();
+                }
                 break;
             case R.id.buttonEqual:
+                // どちらもある時は計算結果を既存値へ、新規値はクリア、アクションもクリア
+                if (mCurrValue.length() > 0 && mNewValue.length() > 0) {
+                    calculate();
+                    mAction = -1;
+                }
                 break;
+        }
+        updateText();
+    }
+
+    private void updateText() {
+        LogUtil.d(TAG, "updateText:" + mNewValue + ", " + mCurrValue);
+        newValueText.setText(mNewValue.toString());
+        currentValueText.setText(mCurrValue.toString());
+        switch (mAction) {
+            case R.id.buttonAdd:
+                actionText.setText("+");
+                break;
+            case R.id.buttonSubtract:
+                actionText.setText("-");
+                break;
+            case R.id.buttonMultiply:
+                actionText.setText("*");
+                break;
+            case R.id.buttonDivide:
+                actionText.setText("/");
+                break;
+            default:
+                actionText.setText(null);
+                break;
+        }
+    }
+
+    private void calculate() {
+        double curr = Double.parseDouble(mCurrValue.toString());
+        double newv = Double.parseDouble(mNewValue.toString());
+        double next;
+        String nextValue = "";
+        // アクションがある時のみ計算。
+        if (mAction > 0) {
+            switch (mAction) {
+                case R.id.buttonAdd:
+                    next = curr + newv;
+                    nextValue = Double.toString(next);
+                    break;
+                case R.id.buttonSubtract:
+                    next = curr - newv;
+                    nextValue = Double.toString(next);
+                    break;
+                case R.id.buttonMultiply:
+                    next = curr * newv;
+                    nextValue = Double.toString(next);
+                    break;
+                case R.id.buttonDivide:
+                    if (newv != 0) {
+                        next = curr / newv;
+                        nextValue = Double.toString(next);
+                    }
+                    break;
+            }
+            mCurrValue.setLength(0);
+            mNewValue.setLength(0);
+            mCurrValue.append(nextValue);
+        }
+        // アクションがない時は？
+        else {
         }
     }
 }
