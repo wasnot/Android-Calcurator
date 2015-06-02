@@ -10,30 +10,32 @@
                 tools:context=".MainActivity">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="26dp"
+            android:gravity="right"
             android:id="@+id/currentValueText"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/currentValueText"
-            android:id="@+id/newValueText"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/newValueText"
-            android:id="@+id/textViewResult"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewResult"
+                android:layout_below="@id/currentValueText"
+                android:textSize="26dp"
                 android:id="@+id/actionText"/>
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/actionText"
+            android:layout_below="@id/currentValueText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textSize="30dp"
+            android:gravity="right"
+            android:id="@+id/newValueText"/>
+
     <android.support.v7.widget.GridLayout
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
             app:columnCount="4"
@@ -227,6 +229,28 @@
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
+
+            <Button
+                    android:id="@+id/buttonClear"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Clear"
+                    app:layout_row="0"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1"/>
+
+            <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="delete"
+                    app:layout_row="0"
+                    app:layout_column="2"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1"/>
 
     </android.support.v7.widget.GridLayout>
 

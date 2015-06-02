@@ -1,14 +1,15 @@
 
 package net.wasnot.android.calculator;
 
-import net.wasnot.android.calculator.realm.CalcurateResult;
 import net.wasnot.android.calculator.util.LogUtil;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -16,7 +17,6 @@ import butterknife.OnClick;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
-import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5,
             R.id.button6, R.id.button7, R.id.button8, R.id.button9, R.id.buttonPlusMinus,
             R.id.buttonPoint, R.id.buttonAdd, R.id.buttonSubtract, R.id.buttonMultiply,
-            R.id.buttonDivide, R.id.buttonEqual
+            R.id.buttonDivide, R.id.buttonEqual, R.id.buttonClear, R.id.buttonDelete
     })
     public void onClick(View v) {
         TextView t = (TextView) v;
@@ -86,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 mNewValue.append(t.getText());
                 break;
             case R.id.buttonPoint:
+                if (mNewValue.indexOf(".") < 0) {
+                    if (mNewValue.length() == 0) {
+                        mNewValue.append("0.");
+                    } else {
+                        mNewValue.append(".");
+                    }
+                }
                 break;
             case R.id.buttonPlusMinus:
                 break;
@@ -114,6 +121,16 @@ public class MainActivity extends AppCompatActivity {
                 if (mCurrValue.length() > 0 && mNewValue.length() > 0) {
                     calculate();
                     mAction = -1;
+                }
+                break;
+            case R.id.buttonClear:
+                mCurrValue.setLength(0);
+                mNewValue.setLength(0);
+                mAction = -1;
+                break;
+            case R.id.buttonDelete:
+                if (mNewValue.length() > 0) {
+                    mNewValue.deleteCharAt(mNewValue.length() - 1);
                 }
                 break;
         }
@@ -175,13 +192,13 @@ public class MainActivity extends AppCompatActivity {
             mCurrValue.append(nextValue);
 
             // Obtain a Realm instance
-            Realm realm = Realm.getInstance(this);
-            realm.beginTransaction();
-            // Create a new object
-            CalcurateResult result = realm.createObject(CalcurateResult.class);
-            // result.setName("Wasabeef");
-            // result.setEmail("chip@wasabeef.jp");
-            realm.commitTransaction();
+//            Realm realm = Realm.getInstance(this);
+//            realm.beginTransaction();
+//            // Create a new object
+//            CalcurateResult result = realm.createObject(CalcurateResult.class);
+//            // result.setName("Wasabeef");
+//            // result.setEmail("chip@wasabeef.jp");
+//            realm.commitTransaction();
 
         }
         // アクションがない時は？
