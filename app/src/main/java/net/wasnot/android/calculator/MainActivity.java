@@ -1,15 +1,14 @@
 
 package net.wasnot.android.calculator;
 
+import net.wasnot.android.calculator.realm.CalcurateResult;
 import net.wasnot.android.calculator.util.LogUtil;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -17,6 +16,7 @@ import butterknife.OnClick;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -173,6 +173,16 @@ public class MainActivity extends AppCompatActivity {
             mCurrValue.setLength(0);
             mNewValue.setLength(0);
             mCurrValue.append(nextValue);
+
+            // Obtain a Realm instance
+            Realm realm = Realm.getInstance(this);
+            realm.beginTransaction();
+            // Create a new object
+            CalcurateResult result = realm.createObject(CalcurateResult.class);
+            // result.setName("Wasabeef");
+            // result.setEmail("chip@wasabeef.jp");
+            realm.commitTransaction();
+
         }
         // アクションがない時は？
         else {
