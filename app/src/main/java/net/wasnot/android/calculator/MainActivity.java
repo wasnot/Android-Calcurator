@@ -3,8 +3,9 @@ package net.wasnot.android.calculator;
 
 import java.math.BigDecimal;
 
+import net.wasnot.android.calculator.realm.CalculateSolution;
 import net.wasnot.android.calculator.util.LogUtil;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
             R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5,
             R.id.button6, R.id.button7, R.id.button8, R.id.button9, R.id.buttonPlusMinus,
             R.id.buttonPoint, R.id.buttonAdd, R.id.buttonSubtract, R.id.buttonMultiply,
-            R.id.buttonDivide, R.id.buttonEqual, R.id.buttonClear, R.id.buttonDelete
+            R.id.buttonDivide, R.id.buttonEqual, R.id.buttonClear, R.id.buttonDelete,
+            R.id.buttonHistory
     })
     public void onClick(View v) {
-        TextView t = (TextView) v;
         switch (v.getId()) {
             case R.id.button0:
             case R.id.button1:
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button7:
             case R.id.button8:
             case R.id.button9:
+                TextView t = (TextView) v;
                 // アクションがないときは前回値はリセット
                 if (mAction <= 0)
                     mCurrValue.setLength(0);
@@ -145,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
                     mNewValue.deleteCharAt(mNewValue.length() - 1);
                 }
                 break;
+            case R.id.buttonHistory:
+                startActivity(new Intent(this, HistoryActivity.class));
+                break;
         }
         updateText();
     }
@@ -218,19 +224,23 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 return false;
             }
+
+            if (true) {
+                Realm realm = Realm.getInstance(this);
+                realm.beginTransaction();
+                // Create a new object
+                CalculateSolution solution = realm.createObject(CalculateSolution.class);
+                CalculateSolution.setActionById(solution, mAction);
+                solution.setTargetTerm(mCurrValue.toString());
+                solution.setGivenTerm(mNewValue.toString());
+                solution.setSolution(nextValue);
+                solution.setTimestamp(System.currentTimeMillis());
+                realm.commitTransaction();
+            }
             mCurrValue.setLength(0);
             mNewValue.setLength(0);
             mCurrValue.append(nextValue);
             return true;
-            // Obtain a Realm instance
-            // Realm realm = Realm.getInstance(this);
-            // realm.beginTransaction();
-            // // Create a new object
-            // CalcurateResult result =
-            // realm.createObject(CalcurateResult.class);
-            // // result.setName("Wasabeef");
-            // // result.setEmail("chip@wasabeef.jp");
-            // realm.commitTransaction();
 
         }
         // アクションがない時は？

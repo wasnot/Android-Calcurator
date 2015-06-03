@@ -272,17 +272,38 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_above="@id/gridLayout">
-
         <View
                 android:id="@+id/centerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_centerInParent="true"/>
 
+        <FrameLayout
+                android:id="@+id/buttonHistoryLayout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_above="@id/centerView">
+
+            <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/buttonHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            <ImageView
+                    android:id="@+id/imageHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_history_grey600_24dp"/>
+
+        </FrameLayout>
+
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/centerView"
+                android:layout_toRightOf="@id/buttonHistoryLayout"
+                android:layout_toEndOf="@id/buttonHistoryLayout"
                 android:textSize="@dimen/text_size_sub_result"
                 android:gravity="end"
                 android:textIsSelectable="true"
