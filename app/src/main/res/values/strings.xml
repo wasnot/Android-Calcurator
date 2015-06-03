@@ -28,5 +28,7 @@
     <string name="toast_divide_by_zero_message">Can not be divided by 0.</string>
     <string name="toast_output_limit_message">The number of calculation result digit too many.</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_clear">Clear</string>
+    <string name="alert_delete_all_history_title">Clear history</string>
+    <string name="alert_delete_all_history_message">Are you sure you want to delete all of history?</string>
 </resources>

@@ -1,14 +1,19 @@
 
 package net.wasnot.android.calculator;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.List;
+
 import net.wasnot.android.calculator.realm.CalculateSolution;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import io.realm.RealmResults;
 
 /**
@@ -18,17 +23,19 @@ public class HistoryRecyclerViewAdapter extends
         RecyclerView.Adapter<HistoryRecyclerViewAdapter.ViewHolder> {
 
     private final Context mContext;
-    private RealmResults<CalculateSolution> mValues;
+    private List<CalculateSolution> mValues;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
         public final TextView mTextView;
+        public final TextView mTimestampText;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mTextView = (TextView) view.findViewById(R.id.textView);
+            mTimestampText = (TextView) view.findViewById(R.id.timestampText);
         }
 
         @Override
@@ -37,7 +44,7 @@ public class HistoryRecyclerViewAdapter extends
         }
     }
 
-    public HistoryRecyclerViewAdapter(Context context, RealmResults<CalculateSolution> items) {
+    public HistoryRecyclerViewAdapter(Context context, List<CalculateSolution> items) {
         mValues = items;
         mContext = context;
     }
@@ -51,15 +58,19 @@ public class HistoryRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mTextView.setText(getFromSolution(mValues.get(position)));
+        CalculateSolution solution = mValues.get(position);
+        holder.mTextView.setText(getFromSolution(solution));
+        holder.mTimestampText.setText(DateFormat.getDateTimeInstance().format(
+                new Date(solution.getTimestamp())));
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), " " + holder.mTextView.getText(), Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
+        // holder.mView.setOnClickListener(new View.OnClickListener() {
+        // @Override
+        // public void onClick(View v) {
+        // Toast.makeText(v.getContext(), " " + holder.mTextView.getText(),
+        // Toast.LENGTH_SHORT)
+        // .show();
+        // }
+        // });
     }
 
     @Override
@@ -87,4 +98,5 @@ public class HistoryRecyclerViewAdapter extends
                 return "?";
         }
     }
+
 }

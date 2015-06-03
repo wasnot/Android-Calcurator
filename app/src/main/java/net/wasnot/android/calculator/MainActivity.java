@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import net.wasnot.android.calculator.realm.CalculateSolution;
 import net.wasnot.android.calculator.util.LogUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -21,8 +23,9 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RealmChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -34,14 +37,19 @@ public class MainActivity extends AppCompatActivity {
     public TextView actionText;
     @InjectView(R.id.gridLayout)
     public View gridLayout;
+    @InjectView(R.id.buttonHistoryLayout)
+    public View buttonHistoryLayout;
 
     private StringBuilder mCurrValue = new StringBuilder();
     private StringBuilder mNewValue = new StringBuilder();
     private int mAction = -1;
 
+    private Realm mRealm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // if not need, comment out.
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
@@ -52,6 +60,32 @@ public class MainActivity extends AppCompatActivity {
         dsp.getMetrics(metrics);
 
         gridLayout.setMinimumHeight((int) (metrics.widthPixels * 5 / 4f));
+
+        mRealm = Realm.getInstance(this);
+        if (mRealm.where(CalculateSolution.class).count() > 0) {
+            buttonHistoryLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mRealm != null)
+            mRealm.addChangeListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mRealm != null)
+            mRealm.removeChangeListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mRealm != null)
+            mRealm.close();
     }
 
     @OnClick({
@@ -225,18 +259,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
 
-            if (true) {
-                Realm realm = Realm.getInstance(this);
-                realm.beginTransaction();
-                // Create a new object
-                CalculateSolution solution = realm.createObject(CalculateSolution.class);
-                CalculateSolution.setActionById(solution, mAction);
-                solution.setTargetTerm(mCurrValue.toString());
-                solution.setGivenTerm(mNewValue.toString());
-                solution.setSolution(nextValue);
-                solution.setTimestamp(System.currentTimeMillis());
-                realm.commitTransaction();
-            }
+            // Create a new object
+            CalculateSolution solution = new CalculateSolution();
+            CalculateSolution.setActionById(solution, mAction);
+            solution.setTargetTerm(mCurrValue.toString());
+            solution.setGivenTerm(mNewValue.toString());
+            solution.setSolution(nextValue);
+            solution.setTimestamp(System.currentTimeMillis());
+            new InsertAsyncTask(this).execute(solution);
+
             mCurrValue.setLength(0);
             mNewValue.setLength(0);
             mCurrValue.append(nextValue);
@@ -246,6 +277,15 @@ public class MainActivity extends AppCompatActivity {
         // アクションがない時は？
         else {
             return false;
+        }
+    }
+
+    @Override
+    public void onChange() {
+        if (mRealm != null && mRealm.where(CalculateSolution.class).count() > 0) {
+            buttonHistoryLayout.setVisibility(View.VISIBLE);
+        } else {
+            buttonHistoryLayout.setVisibility(View.GONE);
         }
     }
 }
