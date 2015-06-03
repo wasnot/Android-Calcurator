@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">計算機</string>
+    <string name="title_activity_history">履歴</string>
+
+    <string name="toast_input_limit_message">これ以上入力できません</string>
+    <string name="toast_divide_by_zero_message">0で割ることはできません</string>
+    <string name="toast_output_limit_message">計算結果の桁数が多すぎます</string>
+
+    <string name="action_clear">削除</string>
+    <string name="alert_delete_all_history_title">履歴を削除</string>
+    <string name="alert_delete_all_history_message">すべての履歴を削除してよろしいですか？</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cyan_white">#ADDEDE</color>
+    <color name="cyan_light">#77C6C6</color>
+    <color name="cyan_middle">#4EB0B0</color>
+    <color name="cyan_dark">#319E9E</color>
+    <color name="cyan_night">#179898</color>
+
+    <color name="yellow_white">#FFEFC7</color>
+    <color name="yellow_light">#FFE399</color>
+    <color name="yellow_middle">#FFD871</color>
+    <color name="yellow_dark">#FFCE4F</color>
+    <color name="yellow_night">#FEC226</color>
+
+    <color name="red_white">#F9C2CD</color>
+    <color name="red_light">#F593A6</color>
+    <color name="red_middle">#F16B85</color>
+    <color name="red_dark">#EE4A6A</color>
+    <color name="red_night">#EC234B</color>
+
+</resources>

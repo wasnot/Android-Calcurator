@@ -1,6 +1,34 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="title_activity_history">History</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="button_num_0" translatable="false">0</string>
+    <string name="button_num_1" translatable="false">1</string>
+    <string name="button_num_2" translatable="false">2</string>
+    <string name="button_num_3" translatable="false">3</string>
+    <string name="button_num_4" translatable="false">4</string>
+    <string name="button_num_5" translatable="false">5</string>
+    <string name="button_num_6" translatable="false">6</string>
+    <string name="button_num_7" translatable="false">7</string>
+    <string name="button_num_8" translatable="false">8</string>
+    <string name="button_num_9" translatable="false">9</string>
+
+    <string name="button_act_add" translatable="false">+</string>
+    <string name="button_act_subtract" translatable="false">-</string>
+    <string name="button_act_multiply" translatable="false">×</string>
+    <string name="button_act_divide" translatable="false">÷</string>
+    <string name="button_act_equal" translatable="false">=</string>
+
+    <string name="button_opt_point" translatable="false">.</string>
+    <string name="button_opt_plus_minus" translatable="false">±</string>
+    <string name="button_opt_clear" translatable="false">clear</string>
+    <string name="button_opt_delete" translatable="false">delete</string>
+
+    <string name="toast_input_limit_message">Can not enter any more.</string>
+    <string name="toast_divide_by_zero_message">Can not be divided by 0.</string>
+    <string name="toast_output_limit_message">The number of calculation result digit too many.</string>
+
+    <string name="action_clear">Clear</string>
+    <string name="alert_delete_all_history_title">Clear history</string>
+    <string name="alert_delete_all_history_message">Are you sure you want to delete all of history?</string>
 </resources>

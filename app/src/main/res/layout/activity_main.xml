@@ -3,66 +3,51 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity">
 
-    <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
-
-    <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
-            android:id="@+id/textView2"/>
-
-    <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textView2"
-            android:id="@+id/textViewResult"/>
-
     <android.support.v7.widget.GridLayout
-            android:layout_height="250dp"
+            android:id="@+id/gridLayout"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
+            android:minHeight="300dp"
+            app:useDefaultMargins="false"
             app:columnCount="4"
             app:rowCount="5">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button7"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="7"
+                android:text="@string/button_num_7"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="1"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button8"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="8"
+                android:text="@string/button_num_8"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="1"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button9"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="9"
+                android:text="@string/button_num_9"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="1"
                 app:layout_column="2"
                 app:layout_columnWeight="1"
@@ -71,154 +56,208 @@
                 app:layout_columnSpan="1"
                 app:layout_rowSpan="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="4"
+                android:text="@string/button_num_4"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="2"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button5"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="5"
+                android:text="@string/button_num_5"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="2"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button6"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="6"
+                android:text="@string/button_num_6"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="2"
                 app:layout_column="2"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="1"
+                android:text="@string/button_num_1"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="3"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="2"
+                android:text="@string/button_num_2"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="3"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="3"
+                android:text="@string/button_num_3"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="3"
                 app:layout_column="2"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/button0"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="0"
+                android:text="@string/button_num_0"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
                 app:layout_row="4"
+                app:layout_column="0"
+                app:layout_columnWeight="1"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"/>
+
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonPoint"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/button_opt_point"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
+                app:layout_row="4"
+                app:layout_column="2"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"/>
+
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonPlusMinus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@string/button_opt_plus_minus"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Yellow"
+                app:layout_row="0"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
-                android:id="@+id/buttonPoint"
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonClear"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="."
-                app:layout_row="4"
+                android:text="@string/button_opt_clear"
+                android:textSize="@dimen/text_size_opt"
+                android:theme="@style/AppTheme.Yellow"
+                app:layout_row="0"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
-                android:id="@+id/buttonPlusMinus"
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonDelete"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="+/-"
-                app:layout_row="4"
+                android:text="@string/button_opt_delete"
+                android:textSize="@dimen/text_size_opt"
+                android:theme="@style/AppTheme.Yellow"
+                app:layout_row="0"
                 app:layout_column="2"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonAdd"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="+"
+                android:text="@string/button_act_add"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Red"
                 app:layout_row="3"
                 app:layout_column="3"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSubtract"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="-"
+                android:text="@string/button_act_subtract"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Red"
                 app:layout_row="2"
                 app:layout_column="3"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonMultiply"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="*"
+                android:text="@string/button_act_multiply"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Red"
                 app:layout_row="1"
                 app:layout_column="3"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonDivide"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="/"
+                android:text="@string/button_act_divide"
+                android:textSize="@dimen/text_size_num"
+                android:theme="@style/AppTheme.Red"
                 app:layout_row="0"
                 app:layout_column="3"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
                 app:layout_rowWeight="1"/>
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonEqual"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="="
+                android:text="@string/button_act_equal"
+                android:textSize="@dimen/text_size_num"
                 app:layout_row="4"
                 app:layout_column="3"
                 app:layout_columnWeight="1"
@@ -226,5 +265,75 @@
                 app:layout_rowWeight="1"/>
 
     </android.support.v7.widget.GridLayout>
+
+    <RelativeLayout
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@id/gridLayout">
+        <View
+                android:id="@+id/centerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"/>
+
+        <FrameLayout
+                android:id="@+id/buttonHistoryLayout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_above="@id/centerView"
+                android:visibility="gone">
+
+            <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/buttonHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible"/>
+
+            <ImageView
+                    android:id="@+id/imageHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:elevation="10dp"
+                    android:src="@drawable/ic_history_grey600_24dp"/>
+
+        </FrameLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/centerView"
+                android:layout_toRightOf="@id/buttonHistoryLayout"
+                android:layout_toEndOf="@id/buttonHistoryLayout"
+                android:textSize="@dimen/text_size_sub_result"
+                android:gravity="end"
+                android:textIsSelectable="true"
+                android:id="@+id/currentValueText"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/currentValueText"
+                android:minHeight="30dp"
+                android:minWidth="30dp"
+                android:textSize="@dimen/text_size_sub_result"
+                android:gravity="center"
+                android:id="@+id/actionText"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/actionText"
+                android:layout_toEndOf="@id/actionText"
+                android:layout_below="@id/currentValueText"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/text_size_result"
+                android:gravity="end"
+                android:id="@+id/newValueText"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
