@@ -4,12 +4,11 @@ package net.wasnot.android.calculator;
 import java.math.BigDecimal;
 
 import net.wasnot.android.calculator.util.LogUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,28 +52,6 @@ public class MainActivity extends AppCompatActivity {
         gridLayout.setMinimumHeight((int) (metrics.widthPixels * 5 / 4f));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @OnClick({
             R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5,
             R.id.button6, R.id.button7, R.id.button8, R.id.button9, R.id.buttonPlusMinus,
@@ -105,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
                         mNewValue.deleteCharAt(0);
                     mNewValue.append(t.getText());
                 } else {
-                    Toast.makeText(this, "これ以上入力できません", Toast.LENGTH_SHORT).show();
+                    // TODO 重複して表示される。
+                    Toast.makeText(this, R.string.toast_input_limit_message, Toast.LENGTH_SHORT)
+                            .show();
                 }
                 break;
             case R.id.buttonPoint:
@@ -176,16 +155,16 @@ public class MainActivity extends AppCompatActivity {
         currentValueText.setText(mCurrValue.toString());
         switch (mAction) {
             case R.id.buttonAdd:
-                actionText.setText("+");
+                actionText.setText(R.string.button_act_add);
                 break;
             case R.id.buttonSubtract:
-                actionText.setText("-");
+                actionText.setText(R.string.button_act_subtract);
                 break;
             case R.id.buttonMultiply:
-                actionText.setText("×");
+                actionText.setText(R.string.button_act_multiply);
                 break;
             case R.id.buttonDivide:
-                actionText.setText("÷");
+                actionText.setText(R.string.button_act_divide);
                 break;
             default:
                 actionText.setText(null);
@@ -227,14 +206,16 @@ public class MainActivity extends AppCompatActivity {
                         }
                         nextValue = next.toPlainString();
                     } else {
-                        Toast.makeText(this, "0で割ることはできません", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.toast_divide_by_zero_message,
+                                Toast.LENGTH_SHORT).show();
                         return false;
                     }
                     break;
             }
             // 計算結果が20桁以上になる場合は桁あふれの警告を出し、計算しない
             if (nextValue.length() > 20) {
-                Toast.makeText(this, "計算結果の桁数が多すぎます", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_output_limit_message, Toast.LENGTH_SHORT)
+                        .show();
                 return false;
             }
             mCurrValue.setLength(0);
