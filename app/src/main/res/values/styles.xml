@@ -1,8 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorButtonNormal">@color/cyan_white</item>
+        <item name="colorControlHighlight">@color/cyan_light</item>
+    </style>
+
+    <style name="AppTheme.Yellow">
+        <!-- Customize your theme here. -->
+        <item name="colorButtonNormal">@color/yellow_white</item>
+        <item name="colorControlHighlight">@color/yellow_light</item>
+    </style>
+
+    <style name="AppTheme.Red">
+        <!-- Customize your theme here. -->
+        <item name="colorButtonNormal">@color/red_light</item>
+        <item name="colorControlHighlight">@color/red_white</item>
     </style>
 
 </resources>
